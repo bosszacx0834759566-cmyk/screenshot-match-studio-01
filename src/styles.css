@@ -386,6 +386,3 @@ html::-webkit-scrollbar, body::-webkit-scrollbar { display: none; width: 0; heig
 .origin-panel:hover { transform: translateY(-6px); box-shadow: 0 40px 80px -30px oklch(0 0 0 / 85%); }
 .origin-panel:hover .origin-img { filter: saturate(1.08); }
 .origin-panel::before { display: none; }
-
-/* Force all text to white across the site */
-body, body * { color: #fff !important; }
