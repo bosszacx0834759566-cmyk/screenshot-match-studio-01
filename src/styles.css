@@ -324,31 +324,32 @@ html::-webkit-scrollbar, body::-webkit-scrollbar { display: none; width: 0; heig
 @media (prefers-reduced-motion: reduce) { .origin-aperture, .origin-img { clip-path: none; transform: none; } }
 
 /* ===== Founder portrait (The Name / leadership section) ===== */
-.founder-portrait { position: relative; width: 100%; max-width: 280px; margin-inline: auto; aspect-ratio: 3 / 4; overflow: hidden; background: var(--ink-2); }
+.founder-portrait { position: relative; width: 100%; max-width: 320px; margin-inline: auto; aspect-ratio: 3 / 4; overflow: hidden;
+  background: var(--ink-2); border: 1px solid var(--line-light);
+  box-shadow: 0 30px 60px -34px oklch(0 0 0 / 45%); }
+/* soft bottom scrim so the info bar stays legible over the photo */
+.founder-portrait::after { content: ""; position: absolute; z-index: 1; inset: 0; pointer-events: none;
+  background: linear-gradient(180deg, transparent 58%, oklch(0 0 0 / 48%)); }
 .founder-portrait-img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top;
   transition: transform 1.2s var(--ease-out); }
 .founder-portrait-wrap:hover .founder-portrait-img { transform: scale(1.04); }
-.hud-corner { position: absolute; width: 30px; height: 30px; border: 0 solid var(--paper); z-index: 2; pointer-events: none;
-  transition: border-color .4s var(--ease-out); }
-.hud-corner.tl { top: 10px; left: 10px; border-top-width: 2px; border-left-width: 2px; }
-.hud-corner.tr { top: 10px; right: 10px; border-top-width: 2px; border-right-width: 2px; }
-.hud-corner.bl { bottom: 10px; left: 10px; border-bottom-width: 2px; border-left-width: 2px; }
-.hud-corner.br { bottom: 10px; right: 10px; border-bottom-width: 2px; border-right-width: 2px; }
-/* inner notch tick on each corner for a viewfinder feel */
-.hud-corner::after { content: ""; position: absolute; width: 8px; height: 8px; }
-.hud-corner.tl::after { top: 6px; left: 6px; border-top: 1px solid var(--paper); border-left: 1px solid var(--paper); }
-.hud-corner.tr::after { top: 6px; right: 6px; border-top: 1px solid var(--paper); border-right: 1px solid var(--paper); }
-.hud-corner.bl::after { bottom: 6px; left: 6px; border-bottom: 1px solid var(--paper); border-left: 1px solid var(--paper); }
-.hud-corner.br::after { bottom: 6px; right: 6px; border-bottom: 1px solid var(--paper); border-right: 1px solid var(--paper); }
-.founder-portrait-wrap:hover .hud-corner { border-color: var(--paper-2); }
-.portrait-tag { position: absolute; z-index: 2; left: 14px; bottom: 14px; display: inline-flex; align-items: center; gap: 8px;
-  padding: 6px 12px; font-size: 10px; font-weight: 700; letter-spacing: .28em; text-transform: uppercase;
-  color: var(--paper); background: oklch(0 0 0 / 55%); border: 1px solid oklch(1 0 0 / 25%); border-left: 2px solid var(--paper);
-  backdrop-filter: blur(4px); }
-.portrait-tag::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--paper);
+/* viewfinder corners — top pair only; the info bar anchors the bottom */
+.hud-corner { position: absolute; width: 26px; height: 26px; z-index: 3; pointer-events: none;
+  transition: width .4s var(--ease-out), height .4s var(--ease-out); }
+.hud-corner.tl { top: 12px; left: 12px; border-top: 2px solid var(--paper); border-left: 2px solid var(--paper); }
+.hud-corner.tr { top: 12px; right: 12px; border-top: 2px solid var(--paper); border-right: 2px solid var(--paper); }
+.founder-portrait-wrap:hover .hud-corner { width: 34px; height: 34px; }
+/* full-width HUD info bar along the bottom edge */
+.portrait-tag { position: absolute; z-index: 3; left: 0; right: 0; bottom: 0; display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 10px 14px; font-size: 10px; font-weight: 700; letter-spacing: .24em; text-transform: uppercase;
+  color: var(--paper); background: oklch(0 0 0 / 60%); border-top: 1px solid oklch(1 0 0 / 22%);
+  backdrop-filter: blur(6px); }
+.portrait-tag-left { display: inline-flex; align-items: center; gap: 8px; }
+.portrait-tag-left::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--paper);
   animation: portrait-pulse 1.6s ease-in-out infinite; }
+.portrait-tag-meta { font-weight: 500; letter-spacing: .18em; opacity: .55; }
 @keyframes portrait-pulse { 0%, 100% { opacity: 1; } 50% { opacity: .25; } }
-@media (min-width: 640px) { .founder-portrait { max-width: 340px; } }
+@media (min-width: 640px) { .founder-portrait { max-width: 360px; } }
 @media (min-width: 768px) { .founder-portrait { max-width: none; margin-inline: 0; } }
 
 /* ===== HUD cursor ===== */
