@@ -318,8 +318,8 @@ html::-webkit-scrollbar, body::-webkit-scrollbar { display: none; width: 0; heig
 .origin-panel:hover .origin-img { filter: grayscale(.6) contrast(1.05); }
 .origin-aperture::after { content: ""; position: absolute; inset: 0; pointer-events: none;
   background: linear-gradient(180deg, oklch(0 0 0 / 45%), transparent 22%, transparent 75%, oklch(0 0 0 / 55%)); }
-.origin-hud { position: absolute; inset: 0; pointer-events: none; font-size: 11px; letter-spacing: .08em; opacity: calc(var(--p) * 1.4 - .3); }
-.origin-hud > span { position: absolute; padding: 18px 20px; color: oklch(1 0 0 / 75%); }
+.origin-hud { position: absolute; inset: 0; pointer-events: none; font-size: 11px; letter-spacing: .08em; opacity: clamp(.8, calc(var(--p) * 1.4 - .3), 1); }
+.origin-hud > span { position: absolute; padding: 18px 20px; color: oklch(1 0 0); text-shadow: 0 1px 3px oklch(0 0 0 / 70%); }
 .origin-hud-tl { top: 0; left: 0; } .origin-hud-tr { top: 0; right: 0; } .origin-hud-bl { bottom: 0; left: 0; }
 @media (prefers-reduced-motion: reduce) { .origin-aperture, .origin-img { clip-path: none; transform: none; } }
 
